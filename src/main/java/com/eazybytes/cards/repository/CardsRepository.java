@@ -1,16 +1,16 @@
 package com.eazybytes.cards.repository;
 
-import java.util.List;
-
-import org.springframework.data.repository.CrudRepository;
+import com.eazybytes.cards.entity.Cards;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.eazybytes.cards.model.Cards;
+import java.util.Optional;
 
 @Repository
-public interface CardsRepository extends CrudRepository<Cards, Long> {
+public interface CardsRepository extends JpaRepository<Cards, Long> {
 
-	
-	List<Cards> findByCustomerId(int customerId);
+    Optional<Cards> findByMobileNumber(String mobileNumber);
+
+    Optional<Cards> findByCardNumber(String cardNumber);
 
 }
