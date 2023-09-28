@@ -106,8 +106,9 @@ public class CardsController {
                                                                 @RequestParam
                                                                @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
                                                                String mobileNumber) {
-        logger.debug("eazyBank-correlation-id found: {} ", correlationId);
+        logger.debug("fetchCardDetails method start");
         CardsDto cardsDto = iCardsService.fetchCard(mobileNumber);
+        logger.debug("fetchCardDetails method end");
         return ResponseEntity.status(HttpStatus.OK).body(cardsDto);
     }
 
@@ -132,7 +133,6 @@ public class CardsController {
                     )
             )
         })
-
     @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateCardDetails(@Valid @RequestBody CardsDto cardsDto) {
         boolean isUpdated = iCardsService.updateCard(cardsDto);
@@ -151,7 +151,6 @@ public class CardsController {
             summary = "Delete Card Details REST API",
             description = "REST API to delete Card details based on a mobile number"
     )
-    
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
